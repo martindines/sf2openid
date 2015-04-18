@@ -14,5 +14,10 @@
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" />
             <argument type="service" id="twig.extension.acme.demo" />
         </service>
+
+        <service id="acme.demo.openid_user_manager" class="Acme\DemoBundle\Security\User\OpenIdUserManager">
+            <argument type="service" id="fp_openid.identity_manager" />
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
     </services>
 </container>

@@ -10,12 +10,11 @@ _configurator:
     resource: "@SensioDistributionBundle/Resources/config/routing/webconfigurator.xml"
     prefix:   /_configurator
 
-fp_openid_security:
-    resource: "@FpOpenIdBundle/Resources/config/routing/security.xml"
-
 _main:
     resource: routing.yml
 
+fp_openid_security:
+    resource: "@FpOpenIdBundle/Resources/config/routing/security.xml"
 
 # AcmeDemoBundle routes (to be removed)
 _acme_demo:

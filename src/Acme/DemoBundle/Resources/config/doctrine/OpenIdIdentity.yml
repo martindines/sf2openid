@@ -1,0 +1,17 @@
+Acme\DemoBundle\Entity\OpenIdIdentity:
+    type: entity
+    repositoryClass: Acme\DemoBundle\Entity\OpenIdIdentityRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    manyToOne:
+        user:
+            targetEntity: User
+            fetch: EAGER
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    lifecycleCallbacks: { }
