@@ -41,7 +41,10 @@ security:
             pattern:    ^/
             logout:       true
             anonymous:    true
+            form_login:
+                post_only: false
             fp_openid:
+                relying_party: acme_openid
                 create_user_if_not_exists: true # so createUserFromIdentity method will be called
                 provider: openid_user_manager # cf below
 

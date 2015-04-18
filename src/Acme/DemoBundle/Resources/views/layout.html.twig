@@ -1,37 +1,26 @@
-{% extends "TwigBundle::layout.html.twig" %}
-
-{% block head %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="{{ _charset }}" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{{ asset('bundles/framework/css/structure.css') }}" rel="stylesheet" />
+    <link href="{{ asset('bundles/framework/css/body.css') }}" rel="stylesheet" />
     <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" />
     <link rel="stylesheet" href="{{ asset('bundles/acmedemo/css/demo.css') }}" />
-{% endblock %}
-
-{% block title 'Demo Bundle' %}
-
-{% block body %}
-    {% for flashMessage in app.session.flashbag.get('notice') %}
-        <div class="flash-message">
-            <em>Notice</em>: {{ flashMessage }}
-        </div>
-    {% endfor %}
-
-    {% block content_header %}
-        <ul id="menu">
-            {% block content_header_more %}
-                <li><a href="{{ path('_demo') }}">Demo Home</a></li>
-            {% endblock %}
-        </ul>
-
-        <div style="clear: both"></div>
-    {% endblock %}
-
-    <div class="block">
+</head>
+<body>
+    <header>
+        <h1>Application</h1>
+        {% if is_granted("IS_AUTHENTICATED_OPENID") %}
+            Authenticated.
+            <a href="{{ path('fp_openid_security_logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ path("fp_openid_security_check", {'openid_identifier': 'http://steamcommunity.com/openid'}) }}">Authenticate via OpenID</a>
+        {% endif %}
+    </header>
+    <section>
         {% block content %}{% endblock %}
-    </div>
-
-    {% if code is defined %}
-        <h2>Code behind this page</h2>
-        <div class="block">
-            <div class="symfony-content">{{ code|raw }}</div>
-        </div>
-    {% endif %}
-{% endblock %}
+    </section>
+</body>
+</html>
